@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-md-12 text-right">
+		<button type="button" class="btn btn-outline-danger" (click)=salir()>
+			Salir
+		</button>
+	</div>
+</div>
+
+<div class="chat-window">
+	<h1>
+		Chat
+	</h1>
+	<hr>
+	<div class="app-mensajes" id="app-mensajes">
+		<div class="text-right" *ngFor="let chat of _cs.chats" [ngClass]="{'text-right': _authService.usuario.uid == chat.uid}">
+			<span class="badge"
+				  [ngClass]="{'badge-primary': _authService.usuario.uid == chat.uid,
+							  'badge-success': _authService.usuario.uid != chat.uid}"
+			> 
+				{{ chat.nombre }}
+			</span>
+			<p>
+				{{ chat.mensaje }}
+			</p>
+		</div>
+	</div>	
+	<input type="text" name="mensaje" class="form-control" [(ngModel)]="mensaje" placeholder="Enviar mensaje..." (keyup.enter)="enviarMensaje()">
+</div>
+
